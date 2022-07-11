@@ -13,13 +13,13 @@ A shelf is an object similar to a dictionary but which allows data persistence. 
 ## How use Shell ?
 - Add the Shelve module by entering the following lines in your REPL (The project is not yet published on Pkg)
 ```julia
-]add https://github.com/machkouroke/Shelve.jl.git
+]add https://github.com/machkouroke/LopShelve.jl.git
 
 ```
 - Import the Shelve module then create a <b>Shelf</b> object with the open method! as following (Please specify the name of the file to open without extensions, if it does not exist it will be created)
 ```julia
-using Shelve
-data = Shelve.open!("test_file")
+using LopShelve
+data = LopShelve.open!("test_file")
 ```
 - You can then use your Shelf object as a dictionary
 ```julia
