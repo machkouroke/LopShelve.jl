@@ -21,8 +21,12 @@ A shelf is an object similar to a dictionary but which allows data persistence. 
 using LopShelve
 data = LopShelve.open!("test_file")
 ```
-- You can then use your Shelf object as a dictionary
+- You can then use your Shelf object as a dictionary (The data is automatically saved in the file)
 ```julia
 data["user_name"] = "machkouroke"
 data["password"] = "abcdefgh"
+```
+- You can delete a Shelf and his file with the ```delete!``` function
+```julia
+delete!(data)
 ```
