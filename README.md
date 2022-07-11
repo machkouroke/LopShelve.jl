@@ -1,7 +1,7 @@
 Shelve.jl
 ============
 
-### Shelve Python implementation in julia
+### Julia implementation of Shelve
 ![image](https://user-images.githubusercontent.com/40785379/178275883-2640a000-95e6-4f11-9a4b-c95d1d66dce2.png)
 
 <a href="https://buymeacoffee.com/machkouroke" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
