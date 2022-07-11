@@ -1,4 +1,4 @@
-Shelve.jl
+LopShelve.jl
 ============
 
 ### Shelve Python implementation in julia
