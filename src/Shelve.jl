@@ -16,7 +16,7 @@ Base.show(io::IO, x::Shelf) = print(io, "$(x.data)")
 function Base.getindex(s::Shelf, key::String)
     return s.data[key]
 end
-function Base.setindex!(s::Shelf, value::Any, key::String)
+function Base.setindex!(s::Shelf, value::Any, key::Any)
     s.data[key] = value
     save(s)
 end
@@ -45,7 +45,6 @@ Save the shelve data
 
 """
 function save(s::Shelf)
-    print("Saving shelve to file: " * s.filename)
     serialize(s.filename, s.data)
 end
 
