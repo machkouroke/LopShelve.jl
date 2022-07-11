@@ -18,8 +18,8 @@ A shelf is an object similar to a dictionary but which allows data persistence. 
 ```
 - Import the Shelve module then create a <b>Shelf</b> object with the open method! as following (Please specify the name of the file to open without extensions, if it does not exist it will be created)
 ```julia
-using Shelve
-data = Shelve.open!("test_file")
+using LopShelve
+data = LopShelve.open!("test_file")
 ```
 - You can then use your Shelf object as a dictionary
 ```julia
