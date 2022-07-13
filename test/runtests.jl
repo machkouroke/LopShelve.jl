@@ -14,7 +14,7 @@ using Test
     full_Shelve = LopShelve.open!("test")
     @test full_Shelve["hello"] == "world"
     @test full_Shelve["complex_data"] == Dict(["a" => "1", "b" => "2"])
-    @show full_Shelve
+    
     delete!(test_Shelve)
     delete!(full_Shelve)
 end

@@ -13,6 +13,6 @@ end
 include("Utilities.jl")
 include("Methods.jl")
 
-export open!, delete!
+export open!, delete!, Shelf
 
 end
