@@ -36,7 +36,7 @@ end
     filename = "../src/ShelfSql/card.s3db"
     @test_throws ErrorException open!(filename, "places")
     db = open!(filename, "card")
-    for i in 1:2
+    for i in 1:5
         query = "select * from card where id = $i"
         row = DBInterface.execute(DB(filename), query) |> DataFrame
         @test db[i][:number] == row.number

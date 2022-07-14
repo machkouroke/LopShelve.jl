@@ -51,6 +51,18 @@ function Base.setindex!(s::ShelfSql, value::NamedTuple, key)
     @show query
     DBInterface.execute(s.db, query, collect(values(all_parameter)))
 end
+function Base.in(item::Any, x::ShelfSql)
+    try 
+        x[item]
+        return true
+    catch e
+        if e isa ErrorException 
+            return false
+        else
+            throw(e)
+        end
+    end
+end
 function value_process(key)
     addappostrophe(x) = x isa String ? "'$x'" : x
     if key isa Tuple

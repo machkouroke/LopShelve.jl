@@ -49,7 +49,7 @@ end
 
 
 # db = DB("src/ShelfSql/card.s3db")
-# db = open!("src/ShelfSql/card.s3db", "card")
-# value = (number=4000007704518267, pin=9090, balance=111)
-# db[4] = value
+db = open!("src/ShelfSql/card.s3db", "card")
+value = (number=4000007704518267, pin=3000, balance=111)
 
+2 in db
