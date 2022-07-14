@@ -10,6 +10,7 @@ bind_maker(value) = ("?,"^length(value))[1:end-1]
 function Base.getindex(s::ShelfSql, key)
     key = value_process(key)
     query = "SELECT * from $(s.table) where $(s.primary_key) == $(key)" |> x -> replace.(x, "\"" => "")
+    @show query
     row = DBInterface.execute(s.db, query) |> DataFrame
     size(row)[1] != 0 || error("No row found for key $key")
     return row |> eachcol |> pairs |> Dict
@@ -63,10 +64,22 @@ function Base.in(item::Any, x::ShelfSql)
         end
     end
 end
+function Base.length(x::ShelfSql) :: Int64
+    query = "SELECT COUNT(*) as length from $(x.table)"
+    return (DBInterface.execute(x.db, query) |> DataFrame).length[1]
+end
+function Base.iterate(x::ShelfSql, state::Int64=1)::Union{Tuple{Any,Int64}, Nothing}
+    return state > (x |> length) ? nothing : (x[keys(x)[state]], state + 1)
+end
+function Base.keys(x::ShelfSql)
+    query = "select $(x.primary_key) from $(x.table)" |> x -> replace.(x, r"\"|[\(\)]" => "")
+    @show query
+    copy.(eachrow((DBInterface.execute(x.db, query) |> DataFrame))) |> x -> values.(x)
+end
 function value_process(key)
     addappostrophe(x) = x isa String ? "'$x'" : x
     if key isa Tuple
-        return addappostrophe.(key)
+        return length(key) == 1 ? addappostrophe(key[1]) : addappostrophe.(key)
     else
         return addappostrophe(key)
     end
