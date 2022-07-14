@@ -1,5 +1,8 @@
 using LopShelve
 using Test
+using SQLite: DB
+using DataFrames
+using DBInterface
 
 # Test of version 0.1.0
 @testset "LopShelve.jl" begin
@@ -14,7 +17,6 @@ using Test
     full_Shelve = LopShelve.open!("test")
     @test full_Shelve["hello"] == "world"
     @test full_Shelve["complex_data"] == Dict(["a" => "1", "b" => "2"])
-    @show open!("../src/ShelfSql/test.sqlite", "places")
     delete!(test_Shelve)
     delete!(full_Shelve)
 end
@@ -27,4 +29,16 @@ end
     @test ("best" in config) == false
     @test ("best_word" in config) == true
     delete!(config)
+end
+
+# Test of version 1.0.0: add of Sqlite Shelf 
+@testset "ShelfSql.jl" begin
+    filename = "../src/ShelfSql/test.sqlite"
+    @test_throws ErrorException open!(filename, "places")
+    db = open!(filename, "places_id")
+    for i in 1:596
+        query = "select * from places_id where id = $i"
+        row = DBInterface.execute(DB(filename), query) |> DataFrame
+        @test db[i][:name] == row.name
+    end
 end
