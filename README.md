@@ -11,9 +11,9 @@ LopShelve.jl
 A shelf is an object similar to a dictionary but which allows data persistence. You could thus save your data in a file as if it were a dictionary. This julia implementation is based on the <a href="https://docs.python.org/3/library/shelve.html">Shelve version of python</a>. So if you used the Shelve version of python you would not be out of place.
 
 ## How use LopShelve ?
-- Add the Shelve module by entering the following lines in your REPL (The project is not yet published on Pkg)
+- Add the Shelve module by entering the following lines in your REPL 
 ```julia
-]add https://github.com/machkouroke/LopShelve.jl.git
+]add LopShelve
 
 ```
 - Import the LopShelve module then create a <b>Shelf</b> object with the open method! as following (Please specify the name of the file to open without extensions, if it does not exist it will be created)
