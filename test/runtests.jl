@@ -33,12 +33,12 @@ end
 
 # Test of version 1.0.0: add of Sqlite Shelf 
 @testset "ShelfSql.jl" begin
-    filename = "../src/ShelfSql/test.sqlite"
+    filename = "../src/ShelfSql/card.s3db"
     @test_throws ErrorException open!(filename, "places")
-    db = open!(filename, "places_id")
-    for i in 1:596
-        query = "select * from places_id where id = $i"
+    db = open!(filename, "card")
+    for i in 1:2
+        query = "select * from card where id = $i"
         row = DBInterface.execute(DB(filename), query) |> DataFrame
-        @test db[i][:name] == row.name
+        @test db[i][:number] == row.number
     end
 end

@@ -47,3 +47,9 @@ function primary_key_finder(db, table)
 end
 
 
+
+# db = DB("src/ShelfSql/card.s3db")
+# db = open!("src/ShelfSql/card.s3db", "card")
+# value = (number=4000007704518267, pin=9090, balance=111)
+# db[4] = value
+
