@@ -1,4 +1,5 @@
 LopShelve.jl
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://lopuniverse.me/LopShelve.jl/)
 ============
 
 ### Julia implementation of Python Shelve
