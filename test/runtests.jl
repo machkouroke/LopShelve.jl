@@ -50,5 +50,6 @@ end
     db = open!(filename, table)
     @test length(db) == 8715
     @test ((1, 3) in db) == true
+    @test ((10000, 10000) in db) == false
     @test length(keys(db)) == 8715
 end
