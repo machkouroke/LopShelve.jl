@@ -1,9 +1,13 @@
 name = "LopShelve"
 uuid = "b886a573-0f84-4e1e-bf4c-dbf643e19b24"
 authors = ["Machkour Oke"]
-version = "0.1.1"
+version = "1.0.0"
 
 [deps]
+DBInterface = "a10d1c49-ce27-4219-8d33-6db1a4562965"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+SQLite = "0aa819cd-b072-5ff4-a722-6bc24af294d9"
 Serialization = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 
 [compat]

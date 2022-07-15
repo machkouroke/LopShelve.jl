@@ -1,3 +1,16 @@
+include("../AbstractShelf/AbstractShelf.jl")
+
+mutable struct Shelf <: AbstractShelf
+    data::Dict{Any,Any}
+    filename::String
+    keys::Vector{Any}
+    function Shelf(data::Dict{Any,Any}, filename::String)
+        this = new(data, filename, keys(data) |> collect)
+    end
+end
+
+include("baseFunction.jl")
+
 """
     open(filename::String)
 Open a given file in a Shelf object
@@ -24,12 +37,3 @@ function save(s::Shelf)
     serialize(s.filename, s.data)
 end
 
-"""
-    delete(s::Shelf)
-delete the shelve file and shelf object
-
-"""
-function Base.delete!(s::Shelf)
-    isfile(s.filename) && rm(s.filename)
-    s = nothing
-end
