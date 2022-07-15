@@ -1,5 +1,3 @@
-include("../AbstractShelf/AbstractShelf.jl")
-
 mutable struct Shelf <: AbstractShelf
     data::Dict{Any,Any}
     filename::String

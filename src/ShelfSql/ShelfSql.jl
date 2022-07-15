@@ -1,7 +1,7 @@
 using SQLite: DB
 using DBInterface
 using DataFrames
-include("../AbstractShelf/AbstractShelf.jl")
+
 mutable struct ShelfSql <: AbstractShelf
     db::DB
     table::String
@@ -45,8 +45,3 @@ function primary_key_finder(db, table)
     end
     return Tuple(primary_key)
 end
-
-
-db = open!("src/ShelfSql/card.s3db", "card")
-length(db)
-db["40"] = (pin=2000, )

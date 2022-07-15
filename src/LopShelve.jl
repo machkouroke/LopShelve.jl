@@ -1,7 +1,7 @@
 module LopShelve
 using Serialization: serialize, deserialize
 
-
+include("AbstractShelf/AbstractShelf.jl")
 include("Shelf/Shelf.jl")
 include("ShelfSql/ShelfSql.jl")
 
