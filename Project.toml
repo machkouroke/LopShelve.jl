@@ -11,10 +11,10 @@ SQLite = "0aa819cd-b072-5ff4-a722-6bc24af294d9"
 Serialization = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 
 [compat]
-DBInterface = "1.0.0"
-DataFrames = "1.0.0"
-Documenter = "1.0.0"
-SQLite = "1.0.0"
+DBInterface = "0.1.0-1.0.0 "
+DataFrames = "0.1.0-1.0.0 "
+Documenter = "0.1.0-1.0.0 "
+SQLite = "0.1.0-1.0.0 "
 julia = "1.7"
 
 [extras]
