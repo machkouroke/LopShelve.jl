@@ -5,6 +5,7 @@ include("AbstractShelf/AbstractShelf.jl")
 include("Shelf/Shelf.jl")
 include("ShelfSql/ShelfSql.jl")
 
-export open!, delete!, Shelf
+export open!, delete!, AbstractShelf, Shelf, ShelfSql
+
 
 end

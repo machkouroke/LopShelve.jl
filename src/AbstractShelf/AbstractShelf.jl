@@ -1,7 +1,7 @@
 abstract type AbstractShelf end
 """
     delete(s::Shelf)
-delete the shelve file and shelf object
+delete the shelve file and the shelf object
 
 """
 function Base.delete!(s::AbstractShelf)
