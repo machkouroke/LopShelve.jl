@@ -11,6 +11,7 @@ SQLite = "0aa819cd-b072-5ff4-a722-6bc24af294d9"
 Serialization = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 
 [compat]
+DataFrames = "1"
 julia = "1"
 
 [extras]
