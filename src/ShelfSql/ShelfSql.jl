@@ -47,16 +47,6 @@ function primary_key_finder(db, table)
 end
 
 
-
-# db = DB("src/ShelfSql/card.s3db")
 db = open!("src/ShelfSql/card.s3db", "card")
-# value = (number=4000007704518267, pin=3000, balance=111)
-# df = copy.(eachrow((DBInterface.execute(db, "select (id, number) from card") |> DataFrame))) |> x -> values.(x)
-# select(df, ("id", )...)
-s = keys(db)
-
-db[s[3]]
-(1,) in db
-# db[9] = (number=4000007704518277, pin=3000, balance=111)
-# length(db)
-# 2 in db
+length(db)
+db["40"] = (pin=2000, )

@@ -10,7 +10,6 @@ bind_maker(value) = ("?,"^length(value))[1:end-1]
 function Base.getindex(s::ShelfSql, key)
     key = value_process(key)
     query = "SELECT * from $(s.table) where $(s.primary_key) == $(key)" |> x -> replace.(x, "\"" => "")
-    @show query
     row = DBInterface.execute(s.db, query) |> DataFrame
     size(row)[1] != 0 || error("No row found for key $key")
     return row |> eachcol |> pairs |> Dict
@@ -49,7 +48,6 @@ function Base.setindex!(s::ShelfSql, value::NamedTuple, key)
         Dict(zip(Symbol.(string_to_tuples(s.primary_key)), string_to_tuples(key))))
     key = string(tuple(keys(all_parameter)...)) |> x -> replace.(x, ":" => "")
     query = "INSERT OR REPLACE INTO $(s.table) $key VALUES($(bind_maker(values(all_parameter))))"
-    @show query
     DBInterface.execute(s.db, query, collect(values(all_parameter)))
 end
 function Base.in(item::Any, x::ShelfSql)
@@ -73,7 +71,6 @@ function Base.iterate(x::ShelfSql, state::Int64=1)::Union{Tuple{Any,Int64}, Noth
 end
 function Base.keys(x::ShelfSql)
     query = "select $(x.primary_key) from $(x.table)" |> x -> replace.(x, r"\"|[\(\)]" => "")
-    @show query
     copy.(eachrow((DBInterface.execute(x.db, query) |> DataFrame))) |> x -> values.(x)
 end
 function value_process(key)
