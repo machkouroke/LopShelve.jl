@@ -12,7 +12,10 @@ Serialization = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 
 [compat]
 DataFrames = "1"
+Documenter = "0.27"
+SQLite = "1"
 julia = "1"
+DBInterface = "2"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
