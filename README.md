@@ -40,7 +40,7 @@ delete!(data)
 
 ### DataBase Interface
 ```
-data = LopShelve.open!("test_file.db", "table_name") 
+data = open!("test_file.db", "table_name") 
 ```
 - You can then use your Shelf object as a dictionary with table's primary key for indexing
 For example The `table_name` table has two columns: username (Primary key) and password so we can register a user as follows
