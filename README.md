@@ -1,4 +1,5 @@
 LopShelve.jl
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://lopuniverse.me/LopShelve.jl/)
 ============
 
 ### Julia implementation of Python Shelve
@@ -13,6 +14,7 @@ However this implementation does not stop there, you could also use LopShelve to
 your data from database (Sqlite) to dictionary
 
 ## How use LopShelve ?
+
 - Add the Shelve module by entering the following lines in your REPL 
 ```julia
 ]add LopShelve
@@ -20,8 +22,11 @@ your data from database (Sqlite) to dictionary
 ```
 - Import the LopShelve module then create a <b>Shelf</b> object with the open method! as following (Please specify the name of the file to open without extensions, if it does not exist it will be created)
 ```julia
-using LopShelve
-data = LopShelve.open!("test_file")
+using LopShelve: open!
+```
+### Ordinary File
+```
+data = open!("test_file") 
 ```
 - You can then use your Shelf object as a dictionary (The data is automatically saved in the file)
 ```julia
@@ -29,6 +34,39 @@ data["user_name"] = "machkouroke"
 data["password"] = "abcdefgh"
 ```
 - You can delete a Shelf and his file with the ```delete!``` function
+```julia
+delete!(data)
+```
+
+### DataBase Interface
+```
+data = open!("test_file.db", "table_name") 
+```
+- You can then use your Shelf object as a dictionary with table's primary key for indexing
+For example The `table_name` table has two columns: username (Primary key) and password so we can register a user as follows
+```julia
+data["machkouroke"] = (password="abcdefgh")
+data["johndoe"] = (password="abcdefghj")
+
+length(data) # 2
+
+"machkouroke" in data # true
+"alex" in data # false
+
+for i in data
+  print(i)
+end
+```
+<b>Output</b>
+```
+Dict{Symbol, AbstractVector} with 2 entries:
+  :username  => ["machkouroke"]
+  :Title    => ["abcdefgh"]
+Dict{Symbol, AbstractVector} with 2 entries:
+  :username  => ["johndoe"]
+  :Title    => ["abcdefghj"]
+```
+- You can also delete a Shelf and his database with the ```delete!``` function
 ```julia
 delete!(data)
 ```
