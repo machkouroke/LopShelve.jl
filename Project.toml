@@ -1,7 +1,7 @@
 name = "LopShelve"
 uuid = "b886a573-0f84-4e1e-bf4c-dbf643e19b24"
 authors = ["Machkour Oke"]
-version = "1.0.1"
+version = "1.0.2"
 
 [deps]
 DBInterface = "a10d1c49-ce27-4219-8d33-6db1a4562965"

@@ -53,3 +53,13 @@ end
     @test ((10000, 10000) in db) == false
     @test length(keys(db)) == 8715
 end
+
+# Test of version 1.0.2
+@testset "ShelfSql.jl" begin
+    filename = "../src/ShelfSql/test_data/chinook.db"
+    table = "playlist_track"
+    @test_throws ErrorException open!(filename, "places")
+    db = open!(filename, table)
+    @test db[begin] == db[(1, 3402)]
+    @test db[end] == db[(18, 597)]
+end

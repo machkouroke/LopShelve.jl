@@ -14,6 +14,8 @@ function Base.getindex(s::ShelfSql, key)
     size(row)[1] != 0 || error("No row found for key $key")
     return row |> eachcol |> pairs |> Dict
 end
+Base.firstindex(s::ShelfSql) = Base.keys(s)[1]
+Base.lastindex(s::ShelfSql) = Base.keys(s)[end]
 
 
 """ 
@@ -128,4 +130,6 @@ function value_process(key)
         return addappostrophe(key)
     end
 end
+
+
 
