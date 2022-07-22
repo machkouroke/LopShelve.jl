@@ -33,12 +33,12 @@ If the file don't exist an empty Shelve object is created. Also
 the file name must'nt have extension
 
 """
-function open!(func, filename::String)
+function open!(func, filename::String; deletion::Bool=false)
     data = open!(filename)
     try
         func(data)
     finally
-        close(data)
+        deletion ? delete!(data) : close!(data)
     end
 end
 
@@ -52,11 +52,11 @@ function save(s::Shelf)
 end
 
 """
-    close(s::Shelf)
+    close!(s::Shelf)
 Close the shelve and save the data in the file and delete the object
 
 """
-function close(s::Shelf)
+function close!(s::Shelf)
     save(s)
     s = nothing
 end

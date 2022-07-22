@@ -12,7 +12,7 @@ using DBInterface
     @test test_Shelve["hello"] == "world"
     test_Shelve["complex_data"] = Dict(["a" => "1", "b" => "2"])
     @test test_Shelve["complex_data"] == Dict(["a" => "1", "b" => "2"])
-    
+    close!(test_Shelve)
     # After Insertion
     full_Shelve = LopShelve.open!("test")
     @test full_Shelve["hello"] == "world"
@@ -62,4 +62,17 @@ end
     db = open!(filename, table)
     @test db[begin] == db[(1, 3402)]
     @test db[end] == db[(18, 597)]
+end
+
+# Test of version 1.0.3
+@testset "ShelfSql.jl" begin
+    open!("test") do db
+        @show db
+        db["a"] = "machkour"
+    end
+    # Check if file is saved correctly
+    open!("test", deletion=true) do db
+        @test db["a"] == "machkour"
+    end
+
 end
