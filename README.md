@@ -75,7 +75,7 @@ for i in data
 end
 ```
 <b>Output</b>
-```
+```julia
 Dict{Symbol, AbstractVector} with 2 entries:
   :username  => ["machkouroke"]
   :Title    => ["abcdefgh"]
