@@ -25,7 +25,7 @@ your data from database (Sqlite) to dictionary
 using LopShelve: open!
 ```
 ### Ordinary File
-```
+```julia
 data = open!("test_file") 
 ```
 - You can then use your Shelf object as a dictionary (The data is automatically saved in the file)
