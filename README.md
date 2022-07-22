@@ -33,11 +33,28 @@ data = open!("test_file")
 data["user_name"] = "machkouroke"
 data["password"] = "abcdefgh"
 ```
+- To close the Shelf and save the data in the file
+```julia
+close!(data)
+```
+- You can also use the do...end syntax to automatically close the Shelf
+```julia
+open!("test_file") do data
+  data["user_name"] = "machkouroke"
+  data["password"] = "abcdefgh"
+end
+```
 - You can delete a Shelf and his file with the ```delete!``` function
 ```julia
 delete!(data)
 ```
-
+- If you use the do...end syntax
+```julia
+open!("test_file"; deletion=false) do data
+  data["user_name"] = "machkouroke"
+  data["password"] = "abcdefgh"
+end
+```
 ### DataBase Interface
 ```
 data = open!("test_file.db", "table_name") 
