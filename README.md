@@ -83,7 +83,7 @@ Dict{Symbol, AbstractVector} with 2 entries:
   :username  => ["johndoe"]
   :Title    => ["abcdefghj"]
 ```
-- You can also delete a Shelf and his database with the ```delete!``` function
+- You can also delete a ShelfSql and his database with the ```delete!``` function
 ```julia
 delete!(data)
 ```
