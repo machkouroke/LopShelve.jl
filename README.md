@@ -54,7 +54,7 @@ delete!(data)
 ```
 - If you use the do...end syntax
 ```julia
-open!("test_file"; deletion=false) do data
+open!("test_file"; deletion=true) do data
   data["user_name"] = "machkouroke"
   data["password"] = "abcdefgh"
 end
