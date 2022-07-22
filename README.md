@@ -37,6 +37,10 @@ data["password"] = "abcdefgh"
 ```julia
 close!(data)
 ```
+- If you just want to savec the data in the file
+```julia
+save(data)
+```
 - You can also use the do...end syntax to automatically close the Shelf
 ```julia
 open!("test_file") do data
