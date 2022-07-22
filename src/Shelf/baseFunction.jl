@@ -7,7 +7,6 @@ end
 function Base.setindex!(s::Shelf, value::Any, key::Any)
     s.data[key] = value
     s.keys = keys(s)
-    save(s)
 end
 
 function Base.in(item::Any, x::Shelf)
