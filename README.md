@@ -33,24 +33,20 @@ data = open!("test_file")
 data["user_name"] = "machkouroke"
 data["password"] = "abcdefgh"
 ```
-- To close the Shelf and save the data in the file
+- To  save the data in the file
 ```julia
-close!(data)
+commit(data)
 ```
-- If you just want to savec the data in the file
-```julia
-save(data)
-```
-- You can also use the do...end syntax to automatically close the Shelf
+- You can also use the do...end syntax to automatically save the data if you end up using the shelf (Recommended)
 ```julia
 open!("test_file") do data
   data["user_name"] = "machkouroke"
   data["password"] = "abcdefgh"
 end
 ```
-- You can delete a Shelf and his file with the ```delete!``` function
+- You can delete a Shelf's file with the ```delete``` function
 ```julia
-delete!(data)
+delete(data)
 ```
 - If you use the do...end syntax
 ```julia
@@ -60,7 +56,7 @@ open!("test_file"; deletion=true) do data
 end
 ```
 ### DataBase Interface
-```
+```julia
 data = open!("test_file.db", "table_name") 
 ```
 - You can then use your Shelf object as a dictionary with table's primary key for indexing
@@ -87,7 +83,7 @@ Dict{Symbol, AbstractVector} with 2 entries:
   :username  => ["johndoe"]
   :Title    => ["abcdefghj"]
 ```
-- You can also delete a ShelfSql and his database with the ```delete!``` function
+- You can also delete a ShelfSql file with the ```delete``` function
 ```julia
-delete!(data)
+delete(data)
 ```
