@@ -33,30 +33,22 @@ If the file don't exist an empty Shelve object is created. Also
 the file name must'nt have extension
 
 """
-function open!(func, filename::String; deletion::Bool=false)
+function open!(func, filename::String)
     data = open!(filename)
     try
         func(data)
     finally
-        deletion ? delete!(data) : close!(data)
+       commit(data)
     end
 end
 
 """
-    save(s::Shelf)
+    commit(s::Shelf)
 Save the shelve data in the file
 
 """
-function save(s::Shelf)
+function commit(s::Shelf)
     serialize(s.filename, s.data)
 end
 
-"""
-    close!(s::Shelf)
-Close the shelve and save the data in the file and delete the object
 
-"""
-function close!(s::Shelf)
-    save(s)
-    s = nothing
-end
