@@ -25,7 +25,7 @@ your data from database (Sqlite) to dictionary
 using LopShelve: open!
 ```
 ### Ordinary File
-```
+```julia
 data = open!("test_file") 
 ```
 - You can then use your Shelf object as a dictionary (The data is automatically saved in the file)
@@ -33,11 +33,32 @@ data = open!("test_file")
 data["user_name"] = "machkouroke"
 data["password"] = "abcdefgh"
 ```
+- To close the Shelf and save the data in the file
+```julia
+close!(data)
+```
+- If you just want to savec the data in the file
+```julia
+save(data)
+```
+- You can also use the do...end syntax to automatically close the Shelf
+```julia
+open!("test_file") do data
+  data["user_name"] = "machkouroke"
+  data["password"] = "abcdefgh"
+end
+```
 - You can delete a Shelf and his file with the ```delete!``` function
 ```julia
 delete!(data)
 ```
-
+- If you use the do...end syntax
+```julia
+open!("test_file"; deletion=true) do data
+  data["user_name"] = "machkouroke"
+  data["password"] = "abcdefgh"
+end
+```
 ### DataBase Interface
 ```
 data = open!("test_file.db", "table_name") 
@@ -58,7 +79,7 @@ for i in data
 end
 ```
 <b>Output</b>
-```
+```julia
 Dict{Symbol, AbstractVector} with 2 entries:
   :username  => ["machkouroke"]
   :Title    => ["abcdefgh"]
@@ -66,7 +87,7 @@ Dict{Symbol, AbstractVector} with 2 entries:
   :username  => ["johndoe"]
   :Title    => ["abcdefghj"]
 ```
-- You can also delete a Shelf and his database with the ```delete!``` function
+- You can also delete a ShelfSql and his database with the ```delete!``` function
 ```julia
 delete!(data)
 ```
