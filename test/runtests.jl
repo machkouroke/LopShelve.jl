@@ -12,13 +12,14 @@ using DBInterface
     @test test_Shelve["hello"] == "world"
     test_Shelve["complex_data"] = Dict(["a" => "1", "b" => "2"])
     @test test_Shelve["complex_data"] == Dict(["a" => "1", "b" => "2"])
-    close!(test_Shelve)
+    commit(test_Shelve)
     # After Insertion
     full_Shelve = LopShelve.open!("test")
     @test full_Shelve["hello"] == "world"
     @test full_Shelve["complex_data"] == Dict(["a" => "1", "b" => "2"])
-    delete!(test_Shelve)
-    delete!(full_Shelve)
+    delete(test_Shelve)
+    delete(full_Shelve)
+    @test !isfile("test.lop") == true
 end
 
 # Test of version 0.1.1: add of composante verification
@@ -28,11 +29,11 @@ end
     @test config.data == Dict{Any, Any}("best_word" => "jeton", "dico" => "src/lop.com", "hello" => "world")
     @test ("best" in config) == false
     @test ("best_word" in config) == true
-    delete!(config)
+    delete(config)
 end
 
 # Test of version 1.0.0: add of Sqlite Shelf 
-@testset "ShelfSql.jl" begin
+@testset "LopShelve.jl" begin
     filename = "../src/ShelfSql/test_data/card.s3db"
     table = "card"
     @test_throws ErrorException open!(filename, "places")
@@ -43,7 +44,7 @@ end
         @test db[i][:number] == row.number
     end
 end
-@testset "ShelfSql.jl" begin
+@testset "LopShelve.jl" begin
     filename = "../src/ShelfSql/test_data/chinook.db"
     table = "playlist_track"
     @test_throws ErrorException open!(filename, "places")
@@ -54,8 +55,8 @@ end
     @test length(keys(db)) == 8715
 end
 
-# Test of version 1.0.2
-@testset "ShelfSql.jl" begin
+# Test of version 1.1.0
+@testset "LopShelve.jl" begin
     filename = "../src/ShelfSql/test_data/chinook.db"
     table = "playlist_track"
     @test_throws ErrorException open!(filename, "places")
@@ -64,8 +65,8 @@ end
     @test db[end] == db[(18, 597)]
 end
 
-# Test of version 1.0.3
-@testset "ShelfSql.jl" begin
+# Test of version 1.1.1
+@testset "LopShelve.jl" begin
     open!("test") do db
         @show db
         db["a"] = "machkour"
@@ -73,6 +74,7 @@ end
     # Check if file is saved correctly
     open!("test", deletion=true) do db
         @test db["a"] == "machkour"
+        @show typeof(db)
     end
-
+    @test !isfile("test.lop") == true
 end

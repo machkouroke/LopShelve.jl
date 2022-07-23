@@ -4,6 +4,6 @@ abstract type AbstractShelf end
 delete the shelve file 
 
 """
-function Base.delete!(s::AbstractShelf)
+function delete(s::AbstractShelf)
     isfile(s.filename) && rm(s.filename)
 end

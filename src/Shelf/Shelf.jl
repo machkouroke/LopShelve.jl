@@ -33,12 +33,12 @@ If the file don't exist an empty Shelve object is created. Also
 the file name must'nt have extension
 
 """
-function open!(func, filename::String)
+function open!(func, filename::String; deletion::Bool=false)
     data = open!(filename)
     try
         func(data)
     finally
-       commit(data)
+        deletion ? delete(data) : commit(data)
     end
 end
 
