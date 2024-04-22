@@ -28,16 +28,16 @@ using LopShelve: open!
 ```julia
 data = open!("test_file") 
 ```
-- You can then use your Shelf object as a dictionary (The data is automatically saved in the file)
+- You can then use your Shelf object as a dictionary.
 ```julia
 data["user_name"] = "machkouroke"
 data["password"] = "abcdefgh"
 ```
-- To  save the data in the file
+- And write the Shelf object to disk using `commit`.
 ```julia
 commit(data)
 ```
-- You can also use the do...end syntax to automatically save the data if you end up using the shelf (Recommended)
+- You can also use Julia's `do...end` syntax to automatically open, modify, and write to disk in one go (Recommended)
 ```julia
 open!("test_file") do data
   data["user_name"] = "machkouroke"
